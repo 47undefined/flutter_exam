@@ -26,36 +26,28 @@ class _BaseTemplateState extends State<BaseTemplate> {
       body: widget.screenContent,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: widget.tabActiveIndex,
-        items: [
+        onTap: (index) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  index == 0 ? const Homepage() : const UserBookmark(),
+            ),
+          );
+        },
+        items: const [
           BottomNavigationBarItem(
             label: 'Home',
-            icon: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Homepage(),
-                  ),
-                );
-              },
-              child: const Icon(
-                Icons.home,
-                size: 30.0,
-              ),
+            icon: Icon(
+              Icons.home,
+              size: 30.0,
             ),
           ),
           BottomNavigationBarItem(
             label: 'Bookmarks',
-            icon: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const UserBookmark(),
-                  ),
-                );
-              },
-              child: const Icon(Icons.bookmark, size: 30.0),
+            icon: Icon(
+              Icons.bookmark,
+              size: 30.0,
             ),
           ),
         ],
