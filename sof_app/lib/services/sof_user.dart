@@ -4,13 +4,17 @@ import 'package:http/http.dart' as http;
 
 class SOFs {
   static getSOFUsers(page) async {
-    Uri api = Uri.parse('$kApiUrl?page=$page&pagesize=15&site=stackoverflow');
-    final response = await http.get(api);
-    if (response.statusCode == 200) {
-      final users = jsonDecode(response.body);
-      return users['items'];
-    } else {
-      throw Exception('Failed to load Users');
+    try {
+      Uri api = Uri.parse('$kApiUrl?page=$page&pagesize=15&site=stackoverflow');
+      final response = await http.get(api);
+      if (response.statusCode == 200) {
+        final users = jsonDecode(response.body);
+        return users['items'];
+      } else {
+        throw Exception('Failed to load Users');
+      }
+    } catch (ex) {
+      print(ex);
     }
   }
 
