@@ -38,7 +38,10 @@ class _BaseTemplateState extends State<BaseTemplate> {
                   ),
                 );
               },
-              child: const Icon(Icons.home),
+              child: const Icon(
+                Icons.home,
+                size: 30.0,
+              ),
             ),
           ),
           BottomNavigationBarItem(
@@ -52,7 +55,7 @@ class _BaseTemplateState extends State<BaseTemplate> {
                   ),
                 );
               },
-              child: const Icon(Icons.bookmark),
+              child: const Icon(Icons.bookmark, size: 30.0),
             ),
           ),
         ],
