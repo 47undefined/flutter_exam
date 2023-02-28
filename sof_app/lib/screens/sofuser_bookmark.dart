@@ -74,31 +74,34 @@ class _UserBookmarkState extends State<UserBookmark> {
                       final user = bookmarkedUsers[index];
                       return Card(
                         child: ListTile(
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15.0,
+                            horizontal: 15.0,
+                          ),
                           leading: CircleAvatar(
                             child: Image.network(user['profile_image']),
                           ),
-                          subtitle: Text(
-                            'Reputation:${user['reputation'].toString()}',
-                          ),
-                          trailing: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              user['location'] != null
-                                  ? Text(
-                                      user['location'],
-                                    )
-                                  : const Text('NA'),
-                              GestureDetector(
-                                onTap: () {
-                                  removeBookMarkedUser(user['id']);
-                                },
-                                child: const Icon(
-                                  Icons.bookmark,
-                                  size: 30.0,
+                          subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  'Reputation:${user['reputation'].toString()}',
                                 ),
-                              ),
-                            ],
+                                user['location'] != null
+                                    ? Text(
+                                        user['location'],
+                                      )
+                                    : const Text(''),
+                              ]),
+                          trailing: GestureDetector(
+                            onTap: () {
+                              removeBookMarkedUser(user['id']);
+                            },
+                            child: const Icon(
+                              Icons.bookmark,
+                              size: 30.0,
+                            ),
                           ),
                           title: Text(user['display_name']),
                         ),

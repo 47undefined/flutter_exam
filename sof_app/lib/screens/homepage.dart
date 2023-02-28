@@ -123,7 +123,7 @@ class _HomepageState extends State<Homepage> {
                     itemCount: users.length,
                     itemBuilder: (context, index) {
                       final user = users[index];
-                      return GestureDetector(
+                      return InkWell(
                         onTap: () {
                           Navigator.push(
                             context,
@@ -135,24 +135,28 @@ class _HomepageState extends State<Homepage> {
                         },
                         child: Card(
                           child: ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 15.0,
+                              horizontal: 15.0,
+                            ),
                             leading: CircleAvatar(
                               child: Image.network(user['profile_image']),
                             ),
-                            subtitle: Text(
-                              'Reputation:${user['reputation'].toString()}',
-                            ),
-                            trailing: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
+                                Text(
+                                  'Reputation:${user['reputation'].toString()}',
+                                ),
                                 user['location'] != null
                                     ? Text(
                                         user['location'],
                                       )
-                                    : const Text('NA'),
-                                isBookMarked(user),
+                                    : const Text(''),
                               ],
                             ),
+                            trailing: isBookMarked(user),
                             title: Text(user['display_name']),
                           ),
                         ),

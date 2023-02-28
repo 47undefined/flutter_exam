@@ -63,6 +63,10 @@ class _UserInfoState extends State<UserInfo> {
                       final reputation = reputations[index];
                       return Card(
                         child: ListTile(
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15.0,
+                            horizontal: 15.0,
+                          ),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -70,10 +74,10 @@ class _UserInfoState extends State<UserInfo> {
                                 'Reputation Type: ${reputation['reputation_history_type'].toString()}',
                               ),
                               Text(
-                                'Created At: ${reputation['creation_date'].toString()}',
+                                'Created At: ${DateTime.fromMillisecondsSinceEpoch(reputation['creation_date'] * 1000)}',
                               ),
                               Text(
-                                'Age: ${reputation['age'].toString() ?? 'NA'}',
+                                'Age: ${reputation['age'] ?? 'Not Given'}',
                               ),
                             ],
                           ),
