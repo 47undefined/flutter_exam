@@ -24,10 +24,12 @@ class _HomepageState extends State<Homepage> {
     scrollController.addListener(scrollControllerEventListener);
     // Calling SOF Service to hit the api
     SOFs.getSOFUsers(page).then((resolve) {
+      // print(resolve);
       setState(() {
         users = resolve;
       });
     });
+    getBookmarkedUsers();
   }
 
   void scrollControllerEventListener() {
@@ -83,7 +85,6 @@ class _HomepageState extends State<Homepage> {
   Widget isBookMarked(dynamic user) {
     // bookmarkedUsers.map((item) => {print(item)});
 
-    getBookmarkedUsers();
     for (int i = 0; i < bookmarkedUsers.length; i++) {
       if (bookmarkedUsers[i]['id'] == user['user_id']) {
         return GestureDetector(

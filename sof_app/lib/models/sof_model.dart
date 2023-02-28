@@ -38,7 +38,6 @@ class SOFModel {
   static Future<dynamic> getBookmarkedUsers() async {
     var db = await openDatabase('bookmarked_database.db');
     var list = await db.query('bookmarked_users');
-    // await db.close();
     return list;
   }
 
